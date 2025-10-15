@@ -157,19 +157,17 @@ with tab1:
             "Enter your fantasy league name and the year of your draft."
         )
     # --- League name + year ---
-if "league_name" not in st.session_state:
+    if "league_name" not in st.session_state:
         st.session_state.league_name = "My League"
-if "league_year" not in st.session_state:
+    if "league_year" not in st.session_state:
         st.session_state.league_year = 2025
-
-col_league = st.columns([2,1])
-with col_league[0]:
+    col_league = st.columns([2,1])
+    with col_league[0]:
         league_name = st.text_input("League name", key="league_name")
         year = st.number_input("Year", min_value=2000, max_value=2100, step=1, key="league_year")
-
-st.info("Enter the number of teams in your league, team names and ticket counts. Total tickets must sum to 1000.")
+    st.info("Enter the number of teams in your league, team names and ticket counts. Total tickets must sum to 1000.")
     colA, colB = st.columns([2, 1])
-with colA:
+    with colA:
         n = st.number_input(
             "Number of teams",
             min_value=2,
@@ -194,8 +192,7 @@ with colA:
             )
             temp_names.append(name.strip())
             temp_tickets.append(int(tickets))
-
-with colB:
+    with colB:
         st.write("Current teams:")
         # Anzeige direkt aktualisieren, auch nach Apply
         current_teams = {}
@@ -273,9 +270,6 @@ with colB:
             st.download_button("Download simulated odds CSV", data=csv_sim, file_name="simulated_odds.csv", mime="text/csv")
         else:
             st.info("No simulated odds yet. Run the simulation to compute per-pick probabilities.")
-
-
-
 # -----------------------
 # TAB 2: Draft-Lottery
 # -----------------------
