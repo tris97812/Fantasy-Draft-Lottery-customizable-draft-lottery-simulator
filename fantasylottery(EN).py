@@ -298,12 +298,16 @@ def pick_commentary(team, pick_number, delta, original_tickets):
     # Pick number commentary
     if pick_number == 1:
         messages.append("💥 First pick in the draft! This year's league is your's to loose...")
-    elif pick_number == 3:
+    elif pick_number == 2:
         messages.append("⭐ Second pick in the draft! KD got picked at this spot. You got the chances to build a strong team...")
     elif pick_number == 3:
         messages.append("⭐ Third pick in the draft! Maybe you'll find your MJ at this spot...")
     elif pick_number == 4:
         messages.append("4th Pick! Did you know the Suns picked at this spot two drafts in a row in 2015 and 2016 and chose Dragan Bender and Josh Jackson... Don't fumble it like they did!")
+    elif pick_number == 5:
+        messages.append("Did you know the Pistons had three Number 5 Picks in a row from 2022 to 2024? I hope you won't be back here next year!")
+    elif pick_number == 9:
+        messages.append("Dirk got picked here, you'll find a hidden gem here too!")
     elif pick_number >= 10:
         messages.append("⏳ Late pick… maybe a hidden gem awaits.")
 
