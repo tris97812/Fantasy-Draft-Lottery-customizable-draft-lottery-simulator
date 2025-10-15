@@ -285,7 +285,7 @@ def pick_commentary(team, pick_number, delta, original_tickets):
         if delta > 0:
             messages.append(f"⬆️ {team} jumps {delta} spot(s)!")
         elif delta < 0:
-            messages.append(f"⬇️  {team} drops {abs(delta)} spot(s) vs seed…")
+            messages.append(f"⬇️  {team} drops {abs(delta)} spot(s)…")
         else:
             messages.append("⏺️ No change vs seed. Steady as she goes!")
 
@@ -301,7 +301,7 @@ def pick_commentary(team, pick_number, delta, original_tickets):
     elif pick_number == 3:
         messages.append("⭐ Second pick in the draft! KD got picked at this spot. You got the chances to build a strong team...")
     elif pick_number == 3:
-        messages.append("⭐ Third pick in the draft! MJ got picked at this spot. You got the chances to build a strong team...")
+        messages.append("⭐ Third pick in the draft! Maybe you'll find your MJ at this spot...")
     elif pick_number == 4:
         messages.append("4th Pick! Did you know the Suns picked at this spot two drafts in a row in 2015 and 2016 and chose Dragan Bender and Josh Jackson... Don't fumble it like they did!")
     elif pick_number >= 10:
