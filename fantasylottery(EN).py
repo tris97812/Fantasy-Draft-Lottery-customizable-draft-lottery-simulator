@@ -547,4 +547,4 @@ with tab2:
             st.success("All cleared.")
 
 st.markdown("---")
-st.caption("Powered by Streamlit • Flensballers Fantasy League 2026 🏀")
+st.caption("Powered by Streamlit • Created by Flensballers Fantasy League 2026 🏀")
