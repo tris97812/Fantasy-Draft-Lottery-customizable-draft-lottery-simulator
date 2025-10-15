@@ -290,7 +290,7 @@ def pick_commentary(team, pick_number, delta, original_tickets):
             messages.append("⏺️ No change vs seed. Steady as she goes!")
 
     # Underdog / ticket-based messages
-    if original_tickets <= 100:
+    if original_tickets <= 30:
         messages.append("🔥 Wow, what a Nico Harrison kind of move! Maybe you traded Luka away last season?")
     elif original_tickets >= 400:
         messages.append("🏀 Congrats! The league will be your's, if you pick wisely!")
@@ -298,8 +298,12 @@ def pick_commentary(team, pick_number, delta, original_tickets):
     # Pick number commentary
     if pick_number == 1:
         messages.append("💥 First pick in the draft! This year's league is your's to loose...")
-    elif pick_number <= 3:
-        messages.append("⭐ Top-3 pick! You can build a strong team...")
+    elif pick_number == 3:
+        messages.append("⭐ Second pick in the draft! KD got picked at this spot. You got the chances to build a strong team...")
+    elif pick_number == 3:
+        messages.append("⭐ Third pick in the draft! MJ got picked at this spot. You got the chances to build a strong team...")
+    elif pick_number == 4:
+        messages.append("4th Pick! Did you know the Suns picked at this spot two drafts in a row in 2015 and 2016 and chose Dragan Bender and Josh Jackson... Don't fumble it like they did!")
     elif pick_number >= 10:
         messages.append("⏳ Late pick… maybe a hidden gem awaits.")
 
