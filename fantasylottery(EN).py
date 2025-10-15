@@ -111,8 +111,6 @@ def generate_draft_pdf(draft_order):
     p.save()
     buf.seek(0)
     return buf
-
-
 # -----------------------
 # Session state defaults
 # -----------------------
@@ -145,18 +143,16 @@ if "league_name" not in st.session_state:
 
 if "draft_year" not in st.session_state:
     st.session_state.draft_year = 2025
-
-
 # -----------------------
 # UI: two tabs
 # -----------------------
-tab1, tab2 = st.tabs(["🏀 Custom League Setup", "🎯 Draft Lottery"])
+tab1, tab2 = st.tabs(["⚙️ Custom League Setup", "🎯 Draft Lottery"])
 
 # -----------------------
 # TAB 1: Setup & Simulation
 # -----------------------
 with tab1:
-    st.header("1) Setup league, teams & tickets")
+    st.header("⚙️ 1) Setup league, teams & tickets")
     
 st.markdown(
             "Enter your fantasy league name and the year of your draft."
