@@ -281,11 +281,30 @@ st.markdown(
 # TAB 2: Draft-Lottery
 # -----------------------
 
-
 with tab2:
-    st.header(f"{st.session_state.league_name} Fantasy Draft {st.session_state.draft_year}")
+    st.header("🏀 f"{st.session_state.league_name} Fantasy Draft Lottery Ceremony {st.session_state.draft_year}")
+    
+    # --- League + year headline ---
+    league_title = st.session_state.get("league_name", "Fantasy League")
+    draft_year = st.session_state.get("draft_year", 2025)
+    st.markdown(f"## 🎉 {league_title} Fantasy Draft Lottery {draft_year}")
 
+    # --- Intro commentary only once ---
+    if "intro_shown" not in st.session_state:
+        st.session_state.intro_shown = False
 
+    if not st.session_state.intro_shown:
+        st.markdown("""
+        Welcome to the official **Fantasy Draft Lottery!**
+        The ping-pong balls are loaded, the tension is rising… and the future of your franchise is about to change forever.
+        """)
+        if st.button("🔥 Start the lottery show"):
+            st.session_state.intro_shown = True
+            st.session_state.pick_commentary = []
+            st.session_state.draft_order = []
+            st.session_state.drawn_combos = []
+            st.session_state.remaining_df = st.session_state.assignment_df.copy()
+            st.success("Let’s begin! The first ball is about to drop…")
     st.subheader("Manual or Auto Draw")
 
     if not st.session_state.teams:
