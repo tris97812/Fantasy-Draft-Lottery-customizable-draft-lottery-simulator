@@ -167,9 +167,9 @@ with col_league[0]:
         league_name = st.text_input("League name", key="league_name")
         year = st.number_input("Year", min_value=2000, max_value=2100, step=1, key="league_year")
 
-    st.info("Enter the number of teams in your league, team names and ticket counts. Total tickets must sum to 1000.")
+st.info("Enter the number of teams in your league, team names and ticket counts. Total tickets must sum to 1000.")
     colA, colB = st.columns([2, 1])
-    with colA:
+with colA:
         n = st.number_input(
             "Number of teams",
             min_value=2,
@@ -195,7 +195,7 @@ with col_league[0]:
             temp_names.append(name.strip())
             temp_tickets.append(int(tickets))
 
-    with colB:
+with colB:
         st.write("Current teams:")
         # Anzeige direkt aktualisieren, auch nach Apply
         current_teams = {}
