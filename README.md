@@ -1,22 +1,65 @@
 # Fantasy-Draft-Lottery-customizable-simulator
-A customizable NBA-style draft lottery simulator for your Fantasy League. 
+A customizable and interactive NBA-style draft lottery simulator built with Streamlit.
+Designed for fantasy basketball leagues, this tool allows commissioners and fans to simulate the draft lottery — either automatically or with manual number draws, just like in the real NBA lottery.
 
-The simulator is based on the "real" NBA lottery. You can use the lottery simulator to make your fantasy league more fun.
+### 🚀 Features
 
-Before I created this little tool, I did our yearly lottery for my 14 Team Points League "offline".
-I wrote the numbers 1-14 on 14 little cheats and put them in a glas.
-Then I took 4 cheats out (without putting them in again after I chose 1 cheat)
-4 cheats/numbers were 1 ticket.
-I simulated an excel-cheat with 1000 tickets. 
-The Teams with the best odds for the No1-Pick (in our league the 3 best teams that didn't make the playoffs) had the most tickets (140 tickets each) like in the real NBA lottery.
-After picking the numbers I had to search in the excel cheat for the ticket and the team name.
+##### 🧩 Custom League Setup
+- Choose your league name and draft year
+- Define any number of teams
+- Assign custom ticket odds (e.g., 400 + 300 + 200 + 100 = 1000 total)
+- Automatically generate 1,000 lottery combinations distributed according to ticket odds
 
-With this little tool I don't have to look in the excel cheat no more because the computer does it for me.
+##### 🎯 Manual or Auto Draw Mode
+- Manually input drawn combinations (like in a live lottery ceremony)
+- Or let the system automatically generate random combinations from the remaining pool
+- Each pick updates in real time, showing:
 
-So if you want to use this tool, you can either choose "offline lottery" or "online lottery" first.
-offline lottery means, that you write the numbers 1-14 on 14 little cheats and pick the numbers manually.
-online lottery means, that the computer randomizes this process.
+##### Lottery ceremony 🎉
+- Their original odds and simulated probability 📊
+- Their movement vs. seed (up, down, unchanged) 🔼🔽⏺️
 
-Afterwards you can choose the number of teams of your league and put the team/manager names in.
-Then you can adjust the ticket number for each team (it has to add up to 1000 tickets total).
+##### 📦 Data Management
+- Export or inspect all assigned combinations
+- Track awarded picks and remove drawn combinations automatically
 
+### 🖥️ Installation
+##### 1. Clone this repository
+git clone https://github.com/YOUR-USERNAME/fantasy-draft-lottery-simulator.git
+cd fantasy-draft-lottery-simulator
+
+##### 2. Install dependencies
+Create a virtual environment (optional) and install required packages:
+pip install -r requirements.txt
+
+##### 3. Run the app
+streamlit run fantasylottery(EN).py
+
+The app will open automatically in your browser (usually at http://localhost:8501).
+
+### 📋 Requirements
+
+Your requirements.txt should include:
+streamlit
+pandas
+numpy
+reportlab
+
+(You can remove reportlab if you don’t plan to use PDF exports.)
+
+### 🏆 Example Workflow
+
+Go to “Setup & Simulation” tab
+→ Enter your league name, draft year, teams, and ticket odds
+→ Click “Apply Team List”
+→ (Optional) Run 10,000 simulations to generate pick probabilities
+
+Switch to “Live Draft Ceremony” tab
+→ Watch the lottery unfold pick by pick!
+→ Choose between manual input (for physical draws) or auto-generate.
+→ See live commentary and statistical insights for each selection.
+
+### 🏀 Credits
+
+Developed by tris from FlensballersFantasy League as a fun project!
+Inspired by the thrill of the NBA Draft Lottery, adapted for fantasy basketball leagues worldwide.
