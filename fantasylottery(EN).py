@@ -153,14 +153,13 @@ tab1, tab2 = st.tabs(["⚙️ Custom League Setup", "🎯 Draft Lottery"])
 # -----------------------
 with tab1:
     st.header("⚙️ 1) Setup league, teams & tickets")
-    
-st.markdown(
+    st.markdown(
             "Enter your fantasy league name and the year of your draft."
         )
     # --- League name + year ---
-    if "league_name" not in st.session_state:
+if "league_name" not in st.session_state:
         st.session_state.league_name = "My League"
-    if "league_year" not in st.session_state:
+if "league_year" not in st.session_state:
         st.session_state.league_year = 2025
 
     col_league = st.columns([2,1])
