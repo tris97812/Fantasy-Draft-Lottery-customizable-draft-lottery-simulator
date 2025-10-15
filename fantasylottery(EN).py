@@ -274,9 +274,48 @@ with tab1:
 # TAB 2: Draft-Lottery
 # -----------------------
 
-with tab2:
+import random  # ensure we can use random.choice for flavor text
 
-    
+# --- Helper for pick commentary ---
+def pick_commentary(team, pick_number, delta, original_tickets):
+    messages = []
+
+    # Delta-based messages
+    if delta is not None:
+        if delta > 0:
+            messages.append(f"⬆️ Slam Dunk! {team} jumps {delta} spot(s) vs seed!")
+        elif delta < 0:
+            messages.append(f"⬇️ Foul! {team} drops {abs(delta)} spot(s) vs seed…")
+        else:
+            messages.append("⏺️ No change vs seed. Steady as she goes!")
+
+    # Underdog / ticket-based messages
+    if original_tickets <= 100:
+        messages.append("🔥 Big move for a small-market team! Underdog vibes!")
+    elif original_tickets >= 400:
+        messages.append("🏀 Favorite team holds strong — top-tier pick secured!")
+
+    # Pick number commentary
+    if pick_number == 1:
+        messages.append("💥 First pick in the draft! Superstar incoming!")
+    elif pick_number <= 3:
+        messages.append("⭐ Top-3 pick! High potential to dominate the season.")
+    elif pick_number >= 10:
+        messages.append("⏳ Late pick… maybe a hidden gem awaits.")
+
+    # Random NBA-style flavor
+    flavor_phrases = [
+        "From downtown!",
+        "Crossover move!",
+        "Full-court press!",
+        "Nothing but net!",
+        "Clutch performance!"
+    ]
+    messages.append(random.choice(flavor_phrases))
+
+    return " ".join(messages)
+ 
+with tab2:
     # --- League + year headline ---
     league_title = st.session_state.get("league_name", "Fantasy League")
     draft_year = st.session_state.get("draft_year", 2026)
@@ -314,7 +353,7 @@ with tab2:
             horizontal=True
         )
 
-        # --- MANUAL MODE ---
+# --- MANUAL MODE ---
         if draw_mode == "🎯 Manual Input":
             st.markdown(
                 "Enter the 4 numbers you physically drew (each between 1–14). Order doesn’t matter. "
@@ -326,7 +365,7 @@ with tab2:
             z3 = c3.number_input("Number 3", min_value=1, max_value=14, step=1, key="z3_draw", value=3)
             z4 = c4.number_input("Number 4", min_value=1, max_value=14, step=1, key="z4_draw", value=4)
 
-            if st.button("🔀 Check combination & award pick"):
+            if st.button("Check combination & award pick"):
                 combo_str = " ".join(map(str, sorted([int(z1), int(z2), int(z3), int(z4)])))
                 row = st.session_state.remaining_df.loc[st.session_state.remaining_df["Combination"] == combo_str]
 
@@ -359,6 +398,9 @@ with tab2:
                         original_seed = seed_map.get(team, None)
                         delta = original_seed - pick_number if original_seed is not None else None
 
+                        # --- Pick commentary ---
+                        commentary = pick_commentary(team, pick_number, delta, original_tickets)
+
                         st.success(
                             f"🏆 {team} awarded Pick {pick_number} (original tickets: {original_tickets}, {original_pct}%)"
                         )
@@ -367,13 +409,7 @@ with tab2:
                         else:
                             st.info("📊 Simulated odds not available (run simulation in Setup tab).")
 
-                        if delta is not None:
-                            if delta > 0:
-                                st.success(f"⬆️ Improvement vs seed: +{delta}")
-                            elif delta < 0:
-                                st.error(f"⬇️ Drop vs seed: {delta}")
-                            else:
-                                st.warning("⏺️ No change vs seed")
+                        st.info(commentary)
 
                         # Remove all combos of this team
                         st.session_state.remaining_df = st.session_state.remaining_df[
@@ -389,7 +425,7 @@ with tab2:
                             }
                         )
 
-        # --- AUTO MODE ---
+# --- AUTO MODE ---
         elif draw_mode == "🎲 Auto Generate":
             st.markdown(
                 "Click the button below to automatically generate a random 4-number combination from the remaining pool."
@@ -408,11 +444,17 @@ with tab2:
                     st.session_state.draft_order.append(team)
                     pick_number = len(st.session_state.draft_order)
 
-                    # Compute original seed & delta
+                    # Compute seed & delta
                     sorted_by_tickets = sorted(st.session_state.teams.items(), key=lambda x: x[1], reverse=True)
                     seed_map = {t: idx + 1 for idx, (t, _) in enumerate(sorted_by_tickets)}
                     original_seed = seed_map.get(team, None)
                     delta = original_seed - pick_number if original_seed is not None else None
+
+                    # Original tickets for commentary
+                    original_tickets = st.session_state.teams.get(team, 0)
+
+                    # --- Pick commentary ---
+                    commentary = pick_commentary(team, pick_number, delta, original_tickets)
 
                     st.session_state.remaining_df = st.session_state.remaining_df[
                         st.session_state.remaining_df["Team"] != team
@@ -421,18 +463,11 @@ with tab2:
                         {"Combination": combo_str, "Team": team, "Pick": pick_number}
                     )
 
-                    # Display results
+                    # Display results with commentary
                     st.success(f"🎲 Auto-generated combination: **{combo_str}**")
                     st.success(f"🏆 {team} wins Pick {pick_number}")
-                    if delta is not None:
-                        if delta > 0:
-                            st.success(f"⬆️ Improvement vs seed: +{delta}")
-                        elif delta < 0:
-                            st.error(f"⬇️ Drop vs seed: {delta}")
-                        else:
-                            st.warning("⏺️ No change vs seed")
-
-
+                    st.info(commentary)
+                    
         # --- Status + Results (shared between both modes) ---
         st.divider()
         st.subheader("📊 Current Draft Order")
