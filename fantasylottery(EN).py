@@ -162,8 +162,8 @@ if "league_name" not in st.session_state:
 if "league_year" not in st.session_state:
         st.session_state.league_year = 2025
 
-    col_league = st.columns([2,1])
-    with col_league[0]:
+col_league = st.columns([2,1])
+with col_league[0]:
         league_name = st.text_input("League name", key="league_name")
         year = st.number_input("Year", min_value=2000, max_value=2100, step=1, key="league_year")
 
