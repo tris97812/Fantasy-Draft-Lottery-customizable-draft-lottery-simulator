@@ -275,7 +275,7 @@ with tab1:
 # -----------------------
 
 with tab2:
-    st.header("🏀 f"{st.session_state.league_name} Fantasy Draft Lottery Ceremony {st.session_state.draft_year}")
+    st.header(f"🏀 {st.session_state.league_name} Fantasy Draft Lottery Ceremony {st.session_state.draft_year}")
     
     # --- League + year headline ---
     league_title = st.session_state.get("league_name", "Fantasy League")
