@@ -283,31 +283,31 @@ def pick_commentary(team, pick_number, delta, original_tickets):
     # Delta-based messages
     if delta is not None:
         if delta > 0:
-            messages.append(f"⬆️ Slam Dunk! {team} jumps {delta} spot(s) vs seed!")
+            messages.append(f"⬆️ {team} jumps {delta} spot(s)!")
         elif delta < 0:
-            messages.append(f"⬇️ Foul! {team} drops {abs(delta)} spot(s) vs seed…")
+            messages.append(f"⬇️  {team} drops {abs(delta)} spot(s) vs seed…")
         else:
             messages.append("⏺️ No change vs seed. Steady as she goes!")
 
     # Underdog / ticket-based messages
     if original_tickets <= 100:
-        messages.append("🔥 Big move for a small-market team! Underdog vibes!")
+        messages.append("🔥 Wow, what a Nico Harrison kind of move! Maybe you traded Luka away last season?")
     elif original_tickets >= 400:
-        messages.append("🏀 Favorite team holds strong — top-tier pick secured!")
+        messages.append("🏀 Congrats! The league will be your's, if you pick wisely!")
 
     # Pick number commentary
     if pick_number == 1:
-        messages.append("💥 First pick in the draft! Superstar incoming!")
+        messages.append("💥 First pick in the draft! This year's league is your's to loose...")
     elif pick_number <= 3:
-        messages.append("⭐ Top-3 pick! High potential to dominate the season.")
+        messages.append("⭐ Top-3 pick! You can build a strong team...")
     elif pick_number >= 10:
         messages.append("⏳ Late pick… maybe a hidden gem awaits.")
 
     # Random NBA-style flavor
     flavor_phrases = [
-        "From downtown!",
-        "Crossover move!",
-        "Full-court press!",
+        "Shooting it like Steph! 'night, 'night...",
+        "Crossed Mike like AI",
+        "Does Uncle Dennis has anything to do with that pick?",
         "Nothing but net!",
         "Clutch performance!"
     ]
