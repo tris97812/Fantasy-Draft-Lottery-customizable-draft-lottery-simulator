@@ -275,12 +275,12 @@ with tab1:
 # -----------------------
 
 with tab2:
-    st.header(f"🏀 {st.session_state.league_name} Fantasy Draft Lottery Ceremony {st.session_state.draft_year}")
+
     
     # --- League + year headline ---
     league_title = st.session_state.get("league_name", "Fantasy League")
-    draft_year = st.session_state.get("draft_year", 2025)
-    st.markdown(f"## 🎉 {league_title} Fantasy Draft Lottery {draft_year}")
+    draft_year = st.session_state.get("draft_year", 2026)
+    st.markdown(f"## 🎉 {league_title} Fantasy Draft Lottery Ceremony {draft_year}")
 
     # --- Intro commentary only once ---
     if "intro_shown" not in st.session_state:
