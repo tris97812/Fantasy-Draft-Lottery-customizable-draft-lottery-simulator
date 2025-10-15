@@ -545,3 +545,6 @@ with tab2:
             st.session_state.simulated_odds_df = None
             st.session_state.reset_inputs = True
             st.success("All cleared.")
+
+st.markdown("---")
+st.caption("Powered by Streamlit • Flensballers Fantasy League 2026 🏀")
